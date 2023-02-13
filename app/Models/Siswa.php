@@ -14,19 +14,20 @@ class Siswa extends Model
         'nis',
         'nama',
         'alamat',
-        'no_tlp',
+        'no_telp',
         'kelas_id',
         'spps_id'
     ];
 
     public function kelas()
     {
-        return $this->belongsTo('App\Models\Kelas', 'id', 'kelas_id');
+        return $this->belongsTo('App\Models\Kelas', 
+        'kelas_id', 'id');
     }
 
     public function spp()
     {
-        return $this->belongsTo('App\Models\Spp', 'id', 'spps_id');
+        return $this->belongsTo('App\Models\Spp', 'spps_id', 'id');
     }
 
     public function pembayaran()

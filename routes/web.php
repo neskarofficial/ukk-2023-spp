@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\Dashboard;
+use App\Http\Controllers\SiswaController;
+use App\Http\Controllers\SppController;
 
 
 /*
@@ -25,5 +27,8 @@ Route::post('login', [LoginController::class, 'proses'])->name('login.proses')->
 
 Route::get('/dashboard/admin', [Dashboard::class, 'admin'])->name('dashboard.admin')->middleware(['auth', 'level:admin,petugas, siswa']);
 Route::get('/dashboard/petugas', [Dashboard::class, 'petugas'])->name('dashboard.petugas')->middleware(['auth', 'level:petugas']);
+
+Route::resource('siswa', SiswaController::class);
+Route::resource('spp', SppController::class)->middleware(['auth','level:admin']);
 
 Route::view('error/403', 'error.403')->name('error.403');
